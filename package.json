@@ -1,0 +1,25 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@ant-design/cssinjs": "^1.18.2",
+    "@ant-design/icons": "^5.2.6",
+    "@reduxjs/toolkit": "^2.0.1",
+    "antd": "^5.12.8",
+    "fs": "^0.0.1-security",
+    "next": "14.0.4",
+    "path": "^0.12.7",
+    "prop-types": "^15.8.1",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-redux": "^9.0.4",
+    "styled-components": "^6.1.8"
+  }
+}
