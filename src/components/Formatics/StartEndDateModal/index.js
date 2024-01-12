@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { Col, Row, DatePicker } from "antd";
 
-const StartEndDateModal = ({ isOneWay }) => {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+const StartEndDateModal = ({
+  isOneWay,
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+}) => {
+
 
   const handleStartDateChange = (date) => {
     setStartDate(date);

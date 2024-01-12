@@ -1,0 +1,29 @@
+{
+  "airports": [
+    {
+      "id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
+      "code": "IST",
+      "city": "Istanbul"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "code": "SAW",
+      "city": "Istanbul"
+    },
+    {
+      "id": "4eb28138-8b8b-45e7-991f-87f5d14c42f6",
+      "code": "ESB",
+      "city": "Ankara"
+    },
+    {
+      "id": "1e45c59d-51b2-4d89-8a35-7a1bf9254516",
+      "code": "ADB",
+      "city": "Izmir"
+    },
+    {
+      "id": "af5865ab-8392-4b1f-9ec5-15f8e7d9c6c7",
+      "code": "AYT",
+      "city": "Antalya"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "flights": [
+    {
+      "flight_id": "TK101",
+      "departure_city": "Istanbul",
+      "departure_airport_code": "IST",
+      "destination_city": "Ankara",
+      "destination_airport_code": "ESB",
+      "departure_time": "2024-01-11T08:00:00+03:00",
+      "arrival_time": "2024-01-11T09:30:00+03:00",
+      "price": 150.00,
+      "airline": "Turkish Airlines",
+      "airpic": "/assets/images/AirlineLogos/turkish-airlines.png"
+    },
+    {
+      "flight_id": "TK102",
+      "departure_city": "Ankara",
+      "departure_airport_code": "ESB",
+      "destination_city": "Istanbul",
+      "destination_airport_code": "IST",
+      "departure_time": "2024-01-11T10:15:00+03:00",
+      "arrival_time": "2024-01-11T11:45:00+03:00",
+      "price": 150.00,
+      "airline": "Pegasus",
+      "airpic": "/assets/images/AirlineLogos/pegasus.png"
+    },
+    {
+      "flight_id": "TK102",
+      "departure_city": "Ankara",
+      "departure_airport_code": "ESB",
+      "destination_city": "Istanbul",
+      "destination_airport_code": "IST",
+      "departure_time": "2024-01-13T10:15:00+03:00",
+      "arrival_time": "2024-01-13T11:45:00+03:00",
+      "price": 150.00,
+      "airline": "Pegasus",
+      "airpic": "/assets/images/AirlineLogos/pegasus.png"
+    },
+    {
+      "flight_id": "TK201",
+      "departure_city": "Istanbul",
+      "departure_airport_code": "IST",
+      "destination_city": "Izmir",
+      "destination_airport_code": "ADB",
+      "departure_time": "2024-01-11T12:30:00+03:00",
+      "arrival_time": "2024-01-11T14:00:00+03:00",
+      "price": 120.50,
+      "airline": "Anadolu Jet",
+      "airpic": "/assets/images/AirlineLogos/anadolu-jet.png"
+    },
+    {
+      "flight_id": "TK202",
+      "departure_city": "Izmir",
+      "departure_airport_code": "ADB",
+      "destination_city": "Istanbul",
+      "destination_airport_code": "IST",
+      "departure_time": "2024-01-11T15:15:00+03:00",
+      "arrival_time": "2024-01-11T16:45:00+03:00",
+      "price": 120.50,
+      "airline": "Turkish Airlines",
+      "airpic": "/assets/images/AirlineLogos/turkish-airlines.png"
+    },
+    {
+      "flight_id": "TK301",
+      "departure_city": "Istanbul",
+      "departure_airport_code": "IST",
+      "destination_city": "Antalya",
+      "destination_airport_code": "AYT",
+      "departure_time": "2024-01-11T17:30:00+03:00",
+      "arrival_time": "2024-01-11T19:00:00+03:00",
+      "price": 180.75,
+      "airline": "Pegasus",
+      "airpic": "/assets/images/AirlineLogos/pegasus.png"
+    },
+    {
+      "flight_id": "TK302",
+      "departure_city": "Antalya",
+      "departure_airport_code": "AYT",
+      "destination_city": "Istanbul",
+      "destination_airport_code": "IST",
+      "departure_time": "2024-01-12T08:00:00+03:00",
+      "arrival_time": "2024-01-12T09:30:00+03:00",
+      "price": 180.75,
+      "airline": "Anadolu Jet",
+      "airpic": "/assets/images/AirlineLogos/anadolu-jet.png"
+    },
+    {
+      "flight_id": "TK303",
+      "departure_city": "Ankara",
+      "departure_airport_code": "ESB",
+      "destination_city": "Izmir",
+      "destination_airport_code": "ADB",
+      "departure_time": "2024-01-12T10:15:00+03:00",
+      "arrival_time": "2024-01-12T11:45:00+03:00",
+      "price": 160.00,
+      "airline": "Turkish Airlines",
+      "airpic": "/assets/images/AirlineLogos/turkish-airlines.png"
+    },
+    {
+      "flight_id": "TK304",
+      "departure_city": "Izmir",
+      "departure_airport_code": "ADB",
+      "destination_city": "Ankara",
+      "destination_airport_code": "ESB",
+      "departure_time": "2024-01-13T12:30:00+03:00",
+      "arrival_time": "2024-01-13T14:00:00+03:00",
+      "price": 160.00,
+      "airline": "Pegasus",
+      "airpic": "/assets/images/AirlineLogos/pegasus.png"
+    }
+  ]
+}

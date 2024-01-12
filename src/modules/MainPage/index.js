@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Input, Col, Row, Space, Form, Select } from "antd";
+import { Input, Col, Row, Space, Form, Select, List, Avatar } from "antd";
 import { SwapOutlined, SwapRightOutlined } from "@ant-design/icons";
 import AppLogo from "@/components/AppLogo";
 import StartEndDateModal from "@/components/Formatics/StartEndDateModal";
-import { onSearchFlights } from "@/toolkit/actions";
-import { useDispatch, useSelector } from 'react-redux';
-
+import { onSearchFlights, onGetAirports } from "@/toolkit/actions";
+import { useDispatch, useSelector } from "react-redux";
+import ListComponent from "@/components/ListComponent";
+import dayjs from "dayjs";
 
 const { Option } = Select;
 
@@ -13,6 +14,9 @@ const MainPage = () => {
   const [fromLocation, setFromLocation] = useState();
   const [toLocation, setToLocation] = useState();
   const [tripType, setTripType] = useState("oneWay");
+
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -28,15 +32,27 @@ const MainPage = () => {
     setToLocation(value);
   };
 
-  const mainPageList = useSelector(({ mainPage }) => mainPage.flightsList);
+  const flightsList = useSelector(({ mainPage }) => mainPage.flightsList);
+  const airportsList = useSelector(({ mainPage }) => mainPage.airportsList);
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(onSearchFlights({}));
-  },[])
+    dispatch(onGetAirports());
+  }, [dispatch]);
 
-  useEffect(()=>{
-    console.log(mainPageList)
-  }, [mainPageList])
+  useEffect(() => {
+    dispatch(
+      onSearchFlights({
+        fromAirport: fromLocation,
+        toAirport: toLocation,
+        tripType: tripType,
+        startDate:  dayjs(startDate).startOf('day').format("YYYY-MM-DDTHH:mm:ss.SSSZ"),
+        endDate: dayjs(endDate).endOf('day').format("YYYY-MM-DDTHH:mm:ss.SSSZ"),
+      })
+    );
+    // console.log(dayjs(startDate).startOf('day').format("YYYY-MM-DDTHH:mm:ss.SSSZ"))
+  }, [fromLocation, toLocation, tripType, startDate, endDate]);
+
 
   return (
     <>
@@ -81,8 +97,19 @@ const MainPage = () => {
                 style={{ width: "100%" }}
                 onChange={handleFromLocationChange}
                 value={fromLocation}
+                showSearch
+                optionFilterProp="children"
+                filterOption={(input, option) =>
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                  0
+                }
+                allowClear
               >
-
+                {airportsList.map((airport) => (
+                  <Option key={airport.id} value={airport.code}>
+                    {`${airport.city} (${airport.code})`}
+                  </Option>
+                ))}
               </Select>
             </Col>
             <Col span={4} style={{ textAlign: "center" }}>
@@ -94,15 +121,38 @@ const MainPage = () => {
                 style={{ width: "100%" }}
                 onChange={handleToLocationChange}
                 value={toLocation}
+                showSearch
+                optionFilterProp="children"
+                filterOption={(input, option) =>
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                  0
+                }
+                allowClear
               >
-                
+                {airportsList.map((airport) => (
+                  <Option key={airport.id} value={airport.code}>
+                    {`${airport.city} (${airport.code})`}
+                  </Option>
+                ))}
               </Select>
             </Col>
           </Row>
         </Col>
 
         <Col span={8}>
-          <StartEndDateModal isOneWay={tripType === "oneWay"} />
+          <StartEndDateModal
+            isOneWay={tripType == "oneWay"}
+            setStartDate={setStartDate}
+            startDate={startDate}
+            endDate={endDate}
+            setEndDate={setEndDate}
+          />
+        </Col>
+      </Row>
+
+      <Row style={{ width: "100%", flexWrap: "nowrap", marginBottom: 10 }}>
+        <Col span={24}>
+          <ListComponent flightsList={flightsList} />
         </Col>
       </Row>
     </>

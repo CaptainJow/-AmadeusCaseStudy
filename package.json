@@ -13,6 +13,7 @@
     "@ant-design/icons": "^5.2.6",
     "@reduxjs/toolkit": "^2.0.1",
     "antd": "^5.12.8",
+    "dayjs": "^1.11.10",
     "fs": "^0.0.1-security",
     "next": "14.0.4",
     "path": "^0.12.7",
