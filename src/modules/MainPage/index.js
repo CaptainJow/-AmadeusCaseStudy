@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Input, Col, Row, Space, Form, Select, List, Avatar } from "antd";
-import { SwapOutlined, SwapRightOutlined } from "@ant-design/icons";
+import {
+  ArrowDownOutlined,
+  ArrowUpOutlined,
+  SwapOutlined,
+  SwapRightOutlined,
+} from "@ant-design/icons";
 import AppLogo from "@/components/AppLogo";
 import StartEndDateModal from "@/components/Formatics/StartEndDateModal";
 import { onSearchFlights, onGetAirports } from "@/toolkit/actions";
@@ -18,6 +23,8 @@ const MainPage = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
+  const [sortedFlights, setSortedFlights] = useState([]);
+
   const dispatch = useDispatch();
 
   const handleTripTypeChange = (value) => {
@@ -30,6 +37,15 @@ const MainPage = () => {
 
   const handleToLocationChange = (value) => {
     setToLocation(value);
+  };
+
+  const handleSortOrderChange = (value) => {
+    const sortedList = [...flightsList].sort((a, b) => {
+      const priceA = a.price;
+      const priceB = b.price;
+      return value === "asc" ? priceA - priceB : priceB - priceA;
+    });
+    setSortedFlights(sortedList);
   };
 
   const flightsList = useSelector(({ mainPage }) => mainPage.flightsList);
@@ -46,14 +62,17 @@ const MainPage = () => {
         fromAirport: fromLocation,
         toAirport: toLocation,
         tripType: tripType,
-        startDate:  dayjs(startDate).startOf('day').format("YYYY-MM-DDTHH:mm:ss.SSSZ"),
-        endDate: dayjs(endDate).endOf('day').format("YYYY-MM-DDTHH:mm:ss.SSSZ"),
+        startDate: dayjs(startDate)
+          .startOf("day")
+          .format("YYYY-MM-DDTHH:mm:ss.SSSZ"),
+        endDate: dayjs(endDate).endOf("day").format("YYYY-MM-DDTHH:mm:ss.SSSZ"),
       })
     );
-    // console.log(dayjs(startDate).startOf('day').format("YYYY-MM-DDTHH:mm:ss.SSSZ"))
   }, [fromLocation, toLocation, tripType, startDate, endDate]);
 
-
+  useEffect(() => {
+    setSortedFlights(flightsList);
+  }, [flightsList]);
   return (
     <>
       <Row style={{ width: "100%", flexWrap: "nowrap", marginBottom: 10 }}>
@@ -67,7 +86,7 @@ const MainPage = () => {
         </Col>
       </Row>
       <Row style={{ width: "100%", flexWrap: "nowrap", marginBottom: 10 }}>
-        <Col span={24}>
+        <Col span={3}>
           <Space style={{ marginLeft: 5 }}>
             <Select
               defaultValue="oneWay"
@@ -80,6 +99,22 @@ const MainPage = () => {
               </Option>
               <Option value="return">
                 <SwapOutlined /> Return Trip
+              </Option>
+            </Select>
+          </Space>
+        </Col>
+        <Col span={8}>
+          <Space style={{ marginLeft: 5 }}>
+            <Select
+              defaultValue="asc"
+              onChange={handleSortOrderChange}
+              style={{ width: 130 }}
+            >
+              <Option value="asc">
+                <ArrowUpOutlined /> Price
+              </Option>
+              <Option value="desc">
+                <ArrowDownOutlined /> Price
               </Option>
             </Select>
           </Space>
@@ -152,7 +187,11 @@ const MainPage = () => {
 
       <Row style={{ width: "100%", flexWrap: "nowrap", marginBottom: 10 }}>
         <Col span={24}>
-          <ListComponent flightsList={flightsList} />
+          {/* {sortedFlights[0] ? ( */}
+            <ListComponent flightsList={sortedFlights} />
+          {/* ) : (
+            <></>
+          )} */}
         </Col>
       </Row>
     </>
